@@ -3,23 +3,18 @@ import { useState } from 'react'
 
 const App = () => {
 
-  const [num, setnum] = useState(0)
-  function increaseNum(){
-    setnum(num+1)
-  }
-  function decreaseNum(){
-    setnum(num-1)
-  }
-  function increaseby5(){
-    setnum(num+5)
-  }
+  const [num, setnum] = useState({user:"Jeevan", age:20})
 
+  const btnClick = ()=>{
+    let newNum = {...num};
+    newNum.user = "Panni"
+    newNum.age = 30
+    setnum(newNum)
+  }
   return (
     <div>
-      <h1>{num}</h1>
-      <button onClick={increaseNum}>Increase</button>
-      <button onClick={decreaseNum}>Decrease</button>
-      <button onClick={increaseby5}>Increase by 5</button>
+      <h1>{num.user},{num.age}</h1>
+      <button onClick={btnClick}>Click!</button>
     </div>
   )
 }
