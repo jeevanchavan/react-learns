@@ -1,0 +1,12 @@
+*{
+  background-color: black;
+  color: white;
+}
+
+button{
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: black;
+  font-size: 50px
+}
