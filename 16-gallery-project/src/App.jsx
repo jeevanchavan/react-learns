@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import Card from './components/Card'
 
 const App = () => {
 
@@ -8,7 +9,7 @@ const App = () => {
   const [index, setIndex] = useState(1)
 
   const getData = async ()=>{
-    const response = await axios.get(`https://picsum.photos/v2/list?page=${index}&limit=15`);
+    const response = await axios.get(`https://picsum.photos/v2/list?page=${index}&limit=20`);
 
     setUserData(response.data);
   }
@@ -22,14 +23,8 @@ const App = () => {
   if(userData.length>0){
     printUserData = userData.map(function(elem,idx){
 
-      return <div key={idx}>
-        <a href={elem.url} target="_">
-          <div className='h-48 w-48 overflow-hidden rounded-xl'>
-          <img className='h-full w-full object-cover' src={elem.download_url} alt="" />
-        </div>
-
-        <h2 className='font-bold text-lg'>{elem.author}</h2>
-        </a>
+      return <div key={idx} >
+        <Card elem={elem} />
       </div>
     })
   }
@@ -44,6 +39,7 @@ const App = () => {
 
       <div className='flex justify-center items-center p-5 gap-5'>
         <button className='bg-amber-400 px-6 py-3 rounded text-sm font-bold text-black cursor-pointer active:scale-95'
+        style={{opacity:index == 1?0.5:1}}
           onClick={()=>{
             if(index > 1){
               setIndex(index-1)
